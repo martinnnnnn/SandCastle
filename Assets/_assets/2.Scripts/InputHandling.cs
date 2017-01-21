@@ -8,6 +8,13 @@ public class InputHandling : MonoBehaviour
     public LayerMask layermask;
 
     public GameObject tourPrefab;
+    public GameObject wallPrefab;
+
+
+    private GameObject currentPrefab;
+
+
+    
  
     void Update()
     {
@@ -24,7 +31,10 @@ public class InputHandling : MonoBehaviour
 
                 if (tile)
                 {
-                    tile.SpawnStructure(tourPrefab);
+                    if (currentPrefab)
+                    {
+                        tile.SpawnStructure(currentPrefab);
+                    }
                 }
                 else if (structure)
                 {
@@ -36,5 +46,30 @@ public class InputHandling : MonoBehaviour
 
 
     }
-    
+
+
+    public void SetTour()
+    {
+        if (currentPrefab != tourPrefab)
+        {
+            currentPrefab = tourPrefab;
+        }
+        else
+        {
+            currentPrefab = null;
+        }
+    }
+
+
+    public void SetWall()
+    {
+        if (currentPrefab != wallPrefab)
+        {
+            currentPrefab = wallPrefab;
+        }
+        else
+        {
+            currentPrefab = null;
+        }
+    }
 }
