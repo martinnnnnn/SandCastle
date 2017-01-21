@@ -4,25 +4,33 @@ using System.Collections;
 
 public enum StructureType
 {
-    WALL_BASIC,
-    WALL_ROCK,
-    WALL_SEAWEED,
-
-    TOUR_BASIC,
-    TOUR_ROCK,
-    TOUR_SEAWEED
+    BASIC,
+    ROCK,
+    SEA,
 }
 
 public class SandStructure : MonoBehaviour
 {
 
-    public GameObject model;
+    public GameObject basicHigh;
+    public GameObject basicMid;
+    public GameObject basicLow;
+
+    public GameObject rockHigh;
+    public GameObject rockMid;
+    public GameObject rockLow;
+
+    public GameObject seaHigh;
+    public GameObject seaMid;
+    public GameObject seaLow;
 
     private SandTile sandTile;
+
     public int maxLife;    
     public int midLife;
     public int lowLife;
-    public int rockNseaweedBonus;
+    public int rockBonus;
+    public int seaBonus;
 
     private int life;
     private bool isMidLife;
@@ -31,35 +39,68 @@ public class SandStructure : MonoBehaviour
     private StructureType type;
 
 
+
+
     private void updateModel()
     {
-
+        SetFalse();
         if (isMidLife)
         {
-            model = Resources.Load<GameObject>("Structures/" + type.ToString() + "_MID") as GameObject;
+            if (type == StructureType.BASIC)
+            {
+                basicMid.SetActive(true);
+            }
+            else if (type == StructureType.ROCK)
+            {
+                rockMid.SetActive(true);
+            }
+            else if (type == StructureType.SEA)
+            {
+                seaMid.SetActive(true);
+            }
         }
         else if (isLowLife)
         {
-            model = Resources.Load<GameObject>("Structures/" + type.ToString() + "_LOW") as GameObject;
+            if (type == StructureType.BASIC)
+            {
+                basicLow.SetActive(true);
+            }
+            else if (type == StructureType.ROCK)
+            {
+                rockLow.SetActive(true);
+            }
+            else if (type == StructureType.SEA)
+            {
+                seaLow.SetActive(true);
+            }
         }
         else
         {
-            model = Resources.Load<GameObject>("Structures/" + type.ToString() + "_HIGH") as GameObject;
+            if (type == StructureType.BASIC)
+            {
+                basicHigh.SetActive(true);
+            }
+            else if (type == StructureType.ROCK)
+            {
+                rockHigh.SetActive(true);
+            }
+            else if (type == StructureType.SEA)
+            {
+                seaHigh.SetActive(true);
+            }
         }
-        //GameObject newModel = Instantiate(model, transform.position, new Quaternion()) as GameObject;
-       // Destroy(model);
-        //model = newModel;
-        model = Instantiate(model, transform.position, new Quaternion()) as GameObject;
-
-
     }
 
 
     void Awake()
     {
+        type = StructureType.BASIC;
         life = maxLife;
         isMidLife = false;
         isLowLife = false;
+
+        SetFalse();
+        basicHigh.SetActive(true);
     }
     
     
@@ -69,16 +110,6 @@ public class SandStructure : MonoBehaviour
         {
             this.type = type;
             updateModel();
-
-            switch(type)
-            {
-                case StructureType.TOUR_ROCK:
-                case StructureType.TOUR_SEAWEED:
-                case StructureType.WALL_ROCK:
-                case StructureType.WALL_SEAWEED:
-                    //ChangeLife(rockNseaweedBonus);
-                    break;
-            }
         }
     }
 
@@ -115,6 +146,20 @@ public class SandStructure : MonoBehaviour
         }
     }
 
+    private void SetFalse()
+    {
+        basicHigh.SetActive(false);
+        basicMid.SetActive(false);
+        basicLow.SetActive(false);
+
+        rockHigh.SetActive(false);
+        rockMid.SetActive(false);
+        rockLow.SetActive(false);
+
+        seaHigh.SetActive(false);
+        seaMid.SetActive(false);
+        seaLow.SetActive(false);
+    }
 
 
 }
