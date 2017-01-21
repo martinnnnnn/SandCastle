@@ -72,6 +72,9 @@ public class WaterGrid : MonoBehaviour{
                 GameObject.Destroy(child.gameObject);
             }
         }
+
+        //
+
         for (int i = 0; i < xSize; i++)
         {
             GameObject yObject = new GameObject(NAME_COLUMN + i);
@@ -94,6 +97,11 @@ public class WaterGrid : MonoBehaviour{
                   //  sfxInstanciated.Add((GameObject)Instantiate(sfx[0], new Vector3(j * planeBounds.size.z + yStart, 0.5f, i * planeBounds.size.x + xStart), Quaternion.identity));
             }
         }
+
+        
+        wg.transform.position += new Vector3(-49.5f, 0, 32.7f);
+        wg.transform.localPosition += new Vector3(0, 0, planeBounds.size.x * ySize);
+        wg.transform.Rotate(new Vector3(0, 90f, 0));
     }
 
     void destroyGrid()
@@ -156,8 +164,8 @@ public class WaterGrid : MonoBehaviour{
         for(int i = 0; i < xSize; i++)
         {
             columns.Add(GameObject.Find(NAME_COLUMN + i));
-            startingPositions.Add(columns[i].transform.position);
-            endingPositions.Add(new Vector3(startingPositions[i].x + planeBounds.size.z * waterMap.columns[i].yPosColToMove, 0, startingPositions[i].z)); //linkMap[i].yFromSandGrid
+            startingPositions.Add(columns[i].transform.localPosition);
+            endingPositions.Add(new Vector3(startingPositions[i].x + planeBounds.size.x * waterMap.columns[i].yPosColToMove, 0, startingPositions[i].z)); //linkMap[i].yFromSandGrid
 
             float pathLength = (startingPositions[i] - endingPositions[i]).magnitude;
             durations.Add(pathLength / speed);
@@ -183,7 +191,7 @@ public class WaterGrid : MonoBehaviour{
             {
                 if (elapsedTime < durations[i])
                 {
-                    columns[i].transform.position = Vector3.Lerp(startingPositions[i], endingPositions[i], (elapsedTime / durations[i]));
+                    columns[i].transform.localPosition = Vector3.Lerp(startingPositions[i], endingPositions[i], (elapsedTime / durations[i]));
                 }
                 else if(indexesLeft.Contains(i))
                 {
