@@ -20,6 +20,16 @@ public class WaterColumn {
         //tilesY = tiles;
     }
 
+    public WaterColumn(int xIndexCol,int[] waterTiles)//, List<WaterTile> tiles)
+    {
+        this.xIndexCol = xIndexCol;
+        this.yCollisionGrid = -1;
+        this.yPosCol = 0;
+        this.yPosColToMove = 0;
+        this.waterTiles.AddRange(waterTiles);
+        //tilesY = tiles;
+    }
+
     /*
     public WaterColumn(int xIndexCol, int yCollisionGrid, int yPosCol)
     {

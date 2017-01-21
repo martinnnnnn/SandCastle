@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     private bool useRock;
     private bool useSeaweed;
 
-
+    private WaterGrid waterGrid;
 
     void Awake()
     {
@@ -44,6 +44,14 @@ public class GameManager : MonoBehaviour
 
         useRock = false;
         useSeaweed = false;
+    }
+
+    void Start()
+    {
+        waterGrid = GetComponent<WaterGrid>();
+
+        FileReader.ReadWaveShape("Assets/wave.txt", 5, 5);
+
     }
 
 

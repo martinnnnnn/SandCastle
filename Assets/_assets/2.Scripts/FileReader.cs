@@ -7,9 +7,13 @@ public class FileReader : MonoBehaviour
 {
 
 
-    public static int[,] ReadWaveShape(string path, int x, int y)
+    public static int[][] ReadWaveShape(string path, int x, int y)
     {
-        int[,] waveMap = new int[x,y];
+        int[][] waveMap = new int[x][];
+        for (int i = 0; i < x; i++)
+        {
+            waveMap[i] = new int[y];
+        }
         try
         {   // Open the text file using a stream reader.
             using (StreamReader sr = new StreamReader(path))
@@ -22,20 +26,16 @@ public class FileReader : MonoBehaviour
                     for (int j = 0; j < x; j++)
                     {
                         Debug.Log(line[i]);
-                        waveMap[i,j] = line[i];
+                        if (line[i] == 1)
+                        {
+                            waveMap[i][j] = 1;
+                        } 
+                        else
+                        {
+                            waveMap[i][j] = 0;
+                        }
                     }
                     i++;
-                }
-
-                
-                
-            }
-
-            for (int i = 0; i < x; i++)
-            {
-                for (int j = 0; j < y; j++)
-                {
-                    Debug.Log(waveMap[i,j]);
                 }
             }
         }

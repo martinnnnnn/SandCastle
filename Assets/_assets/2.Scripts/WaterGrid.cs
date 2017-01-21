@@ -34,8 +34,8 @@ public class WaterGrid : MonoBehaviour{
 
         //sfxInstanciated = new List<GameObject>();
 
-        initMap();
-        createGrid();
+        //initMap();
+        //createGrid();
     }
 
     void initMap()
@@ -59,7 +59,14 @@ public class WaterGrid : MonoBehaviour{
         waterMap = new WaterMap(map);
     }
 
-    void createGrid()
+
+    public void initMap(int[][] waveShape)
+    {
+        waterMap = new WaterMap(waveShape);
+    }
+
+
+    public void createGrid()
     {
         GameObject wg = GameObject.Find(NAME_WATERGRID);
         if(wg == null)

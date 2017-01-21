@@ -28,4 +28,21 @@ public class WaterMap {
             columns.Add(new WaterColumn(j, map[j]));
         }
     }
+
+    public WaterMap(int[][] map)
+    {
+        cooldown = 2;
+        vanishingTime = 5;
+        speed = 5f;
+        wantedYStep = 4;
+
+        columns = new List<WaterColumn>();
+
+        for (int i = 0; i < map.Length; i++)
+        {
+           
+            columns.Add(new WaterColumn(i, map[i]));
+            
+        }
+    }
 }
