@@ -37,6 +37,13 @@ public class SandTile : MonoBehaviour
 
     }
 
+    public void SetStructure(GameObject structure)
+    {
+        sandStructure = structure;
+        sandStructure.SendMessage("SetTile", this);
+        hasStructure = true;
+    }
+
     public void SpawnStructure(GameObject structurePrefab)
     {
         if (!hasStructure)

@@ -21,6 +21,8 @@ public class SandStructure : MonoBehaviour
         isMidLife = false;
         isLowLife = false;
     }
+    
+
 
     public void SetTile(SandTile tile)
     {

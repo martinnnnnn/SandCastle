@@ -6,19 +6,37 @@ public class UIHandling : MonoBehaviour
 {
 
 
-    public InputHandling inputHandler;
-    
+    public GameManager gameManager;
+
+    private CameraHandler cameraHandler;
+
+    void Start()
+    {
+        cameraHandler = Camera.main.GetComponent<CameraHandler>();
+    }
 
 
     public void OnTourClick()
     {
-        inputHandler.SetTour();
+        gameManager.SetTour();
     }
 
     public void OnWallClick()
     {
-        inputHandler.SetWall();
+        gameManager.SetWall();
     }
     
+
+
+    public void OnLeftClick()
+    {
+        cameraHandler.GoLeft();
+    }
+
+
+    public void OnRightClick()
+    {
+        cameraHandler.GoRight();
+    }
 
 }

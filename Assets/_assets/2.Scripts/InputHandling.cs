@@ -4,72 +4,65 @@ using System.Collections;
 public class InputHandling : MonoBehaviour
 {
 
+    public GameManager gameManager;
 
     public LayerMask layermask;
 
-    public GameObject tourPrefab;
-    public GameObject wallPrefab;
+    //public GameObject tourPrefab;
+    //public GameObject wallPrefab;
 
 
-    private GameObject currentPrefab;
+    //private GameObject currentPrefab;
 
 
+    private Vector2 beginTouchPosition;
     
  
     void Update()
     {
 
-        
-        if (Input.GetMouseButtonDown(0))
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
-            RaycastHit info;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out info, 100, layermask))
+            beginTouchPosition = Input.GetTouch(0).position;
+            handleInput(beginTouchPosition);
+
+        }
+
+        else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        {
+            handleInput(Input.GetTouch(0).position);
+        }
+
+        else if (Input.GetMouseButtonDown(0))
+        {
+            handleInput(Input.mousePosition);
+
+        }
+
+
+    }
+
+    
+    private void handleInput(Vector2 position)
+    {
+        RaycastHit info;
+        Ray ray = Camera.main.ScreenPointToRay(position);
+        if (Physics.Raycast(ray, out info, 100, layermask))
+        {
+            SandTile tile = info.collider.GetComponent<SandTile>();
+            SandStructure structure = info.collider.GetComponent<SandStructure>();
+
+            if (tile)
             {
-                SandTile tile = info.collider.GetComponent<SandTile>();
-                SandStructure structure = info.collider.GetComponent<SandStructure>();
+                gameManager.SpawnStructure(tile);
 
-                if (tile)
-                {
-                    if (currentPrefab)
-                    {
-                        tile.SpawnStructure(currentPrefab);
-                    }
-                }
-                else if (structure)
-                {
-                    
-                }
-                
             }
-        }
+            else if (structure)
+            {
 
+            }
 
-    }
-
-
-    public void SetTour()
-    {
-        if (currentPrefab != tourPrefab)
-        {
-            currentPrefab = tourPrefab;
-        }
-        else
-        {
-            currentPrefab = null;
         }
     }
-
-
-    public void SetWall()
-    {
-        if (currentPrefab != wallPrefab)
-        {
-            currentPrefab = wallPrefab;
-        }
-        else
-        {
-            currentPrefab = null;
-        }
-    }
+    
 }
