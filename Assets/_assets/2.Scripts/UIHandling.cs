@@ -5,10 +5,12 @@ using System.Collections;
 public class UIHandling : MonoBehaviour
 {
 
-
     public GameManager gameManager;
+    public Button fightButton;
 
     private CameraHandler cameraHandler;
+
+
 
     void Start()
     {
@@ -37,6 +39,33 @@ public class UIHandling : MonoBehaviour
     public void OnRightClick()
     {
         cameraHandler.GoRight();
+    }
+
+
+    public void OnRockClick()
+    {
+        gameManager.SetRock();
+    }
+
+    public void OnSeaweedClick()
+    {
+        gameManager.SetSeaweed();
+    }
+
+
+
+
+
+    public void StartFight()
+    {
+        gameManager.StartFight();
+        ShowFightButton(false);
+    }
+
+    public void ShowFightButton(bool show)
+    {
+        fightButton.gameObject.SetActive(show);
+        
     }
 
 }

@@ -44,6 +44,11 @@ public class SandTile : MonoBehaviour
         hasStructure = true;
     }
 
+    public GameObject GetStructure()
+    {
+        return sandStructure;
+    }
+
     public void SpawnStructure(GameObject structurePrefab)
     {
         if (!hasStructure)

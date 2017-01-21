@@ -50,18 +50,41 @@ public class InputHandling : MonoBehaviour
         if (Physics.Raycast(ray, out info, 100, layermask))
         {
             SandTile tile = info.collider.GetComponent<SandTile>();
-            SandStructure structure = info.collider.GetComponent<SandStructure>();
+            
 
             if (tile)
             {
                 gameManager.SpawnStructure(tile);
-
+                return;
             }
-            else if (structure)
+
+            SandStructure structure = info.collider.GetComponent<SandStructure>();
+            if (structure)
             {
-
+                gameManager.ClickOnStructure(structure);
+                return;
+            }
+            Sand sand = info.collider.GetComponent<Sand>();
+            if (sand)
+            {
+                gameManager.ChangeSandValue(1);
+                return;
             }
 
+            Rock rock = info.collider.GetComponent<Rock>();
+            if (rock)
+            {
+                gameManager.ChangeRockValue(1);
+                Destroy(rock.gameObject);
+                return;
+            }
+            Seaweed sea = info.collider.GetComponent<Seaweed>();
+            if (sea)
+            {
+                gameManager.ChangeSeaweedValue(1);
+                Destroy(sea.gameObject);
+                return;
+            }
         }
     }
     
