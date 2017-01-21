@@ -258,13 +258,7 @@ public class WaterGrid : MonoBehaviour{
         //if (delta > (ySize * planeBounds.size.z / waterMap.speed) + 1)
         if(delta >= 5)
         {
-<<<<<<< HEAD:Assets/WaterGrid.cs
-            Debug.Log("ok");
             //generateRandomMoves();
-=======
-            
-            generateRandomMoves();
->>>>>>> edf5979b687c1f365861d64c6197565811afb86c:Assets/_assets/2.Scripts/WaterGrid.cs
             waveM = StartCoroutine(moveForwardSmooth(waterMap.speed));
             delta = -999;
         }
