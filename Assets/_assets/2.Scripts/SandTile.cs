@@ -39,6 +39,11 @@ public class SandTile : MonoBehaviour
 
     public void SetStructure(GameObject structure)
     {
+        if (sandStructure != null)
+        {
+            Destroy(sandStructure);
+            sandStructure = null;
+        }
         sandStructure = structure;
         sandStructure.SendMessage("SetTile", this);
         hasStructure = true;
@@ -53,6 +58,11 @@ public class SandTile : MonoBehaviour
     {
         if (!hasStructure)
         {
+            if(sandStructure != null)
+            {
+                Destroy(sandStructure);
+                sandStructure = null;
+            }
             hasStructure = true;
             sandStructure = (GameObject)Instantiate(structurePrefab, transform.position, new Quaternion());
             sandStructure.SendMessage("SetTile",this);
@@ -66,7 +76,18 @@ public class SandTile : MonoBehaviour
 
     public void StructureDead()
     {
-        sandStructure = null;
+        Debug.Log("Structure dead");
+        //Destroy(sandStructure);
+        
+        foreach (Transform child in sandStructure.transform)
+        {
+            if(child.gameObject.activeSelf)
+            {
+                Debug.Log("active" + child.gameObject.name);
+                child.GetComponent<CapsuleCollider>().enabled = false;
+            }
+        }
+        //sandStructure = null;
         hasStructure = false;
     }
     

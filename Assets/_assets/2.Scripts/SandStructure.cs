@@ -126,22 +126,26 @@ public class SandStructure : MonoBehaviour
 
     public void ChangeLife(int value)
     {
+        
         life += value;
-
-
+        Debug.Log("take damage " + value + " life:" + life);
+        /*
         if (life < 0)
         {
             sandTile.StructureDead();
         }
+        */
 
-        else if (life < midLife && !isMidLife && !isLowLife)
-        {
-            isMidLife = true;
-            updateModel();
-        }
-        else if (life < lowLife && !isLowLife)
+        
+        if (life <= lowLife && !isLowLife)
         {
             isLowLife = true;
+            updateModel();
+            sandTile.StructureDead();
+        }
+        else if(life <= midLife && !isMidLife && !isLowLife)
+        {
+            isMidLife = true;
             updateModel();
         }
     }

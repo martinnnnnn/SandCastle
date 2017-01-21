@@ -53,14 +53,14 @@ public class SandGrid : MonoBehaviour
             //Check if collision one by one (y0,y1,.. until reaching step end)
             for (int i = 0; i <= waterMap.wantedYStep; i++)
             {
-                if (!checkWantedStep(i, column)) break;
+                if (!checkWantedStep(i, column, waterMap.wantedYStep)) break;
             }
 
             Debug.Log("column: " + column.xIndexCol + " togo:" + column.yPosColToMove);
         }
     }
 
-    public bool checkWantedStep(int index, WaterColumn column)
+    public bool checkWantedStep(int index, WaterColumn column, int wantedYStep)
     {
         //Get last tile water, beginning from bottom
         int j = column.waterTiles.Count - 1;
@@ -77,14 +77,18 @@ public class SandGrid : MonoBehaviour
 
         //if (column.waterTiles[j] > 0)
         //{
-        Debug.Log("index: " + index);
-        Debug.Log("x: " + column.xIndexCol + " y:" + j + " " + (tiles[2, 2].HasStructure() ? "yes" : "no"));
+        //Debug.Log("index: " + index);
+        //Debug.Log("x: " + column.xIndexCol + " y:" + j + " " + (tiles[2, 2].HasStructure() ? "yes" : "no"));
         //Debug.Log("TILE 2 2 : " + (tiles[2, 2].HasStructure() ? "yes" : "no"));
         if (tiles[column.xIndexCol, index].HasStructure())
         {
             column.yCollisionGrid = j;
             column.yPosColToMove = index - 1 + numberblanck;//!!!!!
-            Debug.Log("yPosColToMove: " + column.yPosColToMove);
+            //Debug.Log("yPosColToMove: " + column.yPosColToMove);
+            
+            //Take damage
+            tiles[column.xIndexCol, index].GetStructure().SendMessage("ChangeLife", -(wantedYStep - index));
+
             return false;
         }
         else
