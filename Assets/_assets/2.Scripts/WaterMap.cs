@@ -19,6 +19,7 @@ public class WaterMap {
         cooldown = 2;
         vanishingTime = 5;
         speed = 5f;
+        wantedYStep = 4;
 
         this.columns = new List<WaterColumn>();
 

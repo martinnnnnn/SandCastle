@@ -21,6 +21,7 @@ public class WaterGrid : MonoBehaviour{
 
     private const string NAME_COLUMN = "COL";
     private const string NAME_WATERGRID = "WATERGRID";
+    private const string NAME_SANDGRID = "SandGrid";
 
     Coroutine waveM;//move
     Coroutine waveA;//attack
@@ -160,12 +161,15 @@ public class WaterGrid : MonoBehaviour{
         List<Vector3> endingPositions = new List<Vector3>();
         List<float> durations = new List<float>();
 
+        //Check collisions and set max y to go per column
+        GameObject.Find(NAME_SANDGRID).SendMessage("computeCollisions", waterMap);
+
         //Init
-        for(int i = 0; i < xSize; i++)
+        for (int i = 0; i < xSize; i++)
         {
             columns.Add(GameObject.Find(NAME_COLUMN + i));
             startingPositions.Add(columns[i].transform.localPosition);
-            endingPositions.Add(new Vector3(startingPositions[i].x + planeBounds.size.x * waterMap.columns[i].yPosColToMove, 0, startingPositions[i].z)); //linkMap[i].yFromSandGrid
+            endingPositions.Add(new Vector3(startingPositions[i].x + planeBounds.size.x * (waterMap.columns[i].yPosColToMove + 1), 0, startingPositions[i].z));// "+ 1" because we want to go check y0 of sandgrid (0 => move once)
 
             float pathLength = (startingPositions[i] - endingPositions[i]).magnitude;
             durations.Add(pathLength / speed);
@@ -182,8 +186,6 @@ public class WaterGrid : MonoBehaviour{
         {
             indexesLeft.Add(i);
         }
-
-        //sandgrid.waterIsComing(waterMap); /--------------------------------------------------\
 
         while (indexesLeft.Count > 0)//checkDurations(durations))
         {
@@ -254,10 +256,9 @@ public class WaterGrid : MonoBehaviour{
     {
         delta += Time.deltaTime;
         //if (delta > (ySize * planeBounds.size.z / waterMap.speed) + 1)
-        if(delta >= 2)
+        if(delta >= 5)
         {
-            
-            generateRandomMoves();
+            //generateRandomMoves();
             waveM = StartCoroutine(moveForwardSmooth(waterMap.speed));
             delta = -999;
         }
