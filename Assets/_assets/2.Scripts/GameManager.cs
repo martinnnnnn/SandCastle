@@ -71,14 +71,14 @@ public class GameManager : MonoBehaviour
             {
                 sandQuantityCurrent -= tourSandValue;
                 GameObject sandStructure = (GameObject)Instantiate(currentPrefab, tile.transform.position, new Quaternion());
-                sandStructure.SendMessage("SetType", StructureType.TOUR_BASIC);
+                //sandStructure.SendMessage("SetType", StructureType.TOUR_BASIC);
                 tile.SetStructure(sandStructure);
             }
             else if (currentPrefab == wallPrefab && sandQuantityCurrent >= wallSandValue)
             {
                 sandQuantityCurrent -= wallSandValue;
                 GameObject sandStructure = (GameObject)Instantiate(currentPrefab, tile.transform.position, new Quaternion());
-                sandStructure.SendMessage("SetType", StructureType.WALL_BASIC);
+                //sandStructure.SendMessage("SetType", StructureType.WALL_BASIC);
                 tile.SetStructure(sandStructure);
             }
         }
@@ -119,27 +119,17 @@ public class GameManager : MonoBehaviour
     {
         if (useRock)
         {
-            if (structure.GetStructureType() == StructureType.TOUR_BASIC)
+            if (structure.GetStructureType() == StructureType.BASIC)
             {
-                structure.SetType(StructureType.TOUR_ROCK);
+                structure.SetType(StructureType.ROCK);
             }
-            else if (structure.GetStructureType() == StructureType.WALL_BASIC)
-            {
-                structure.SetType(StructureType.WALL_ROCK);
-            }
-             
         }
         else if (useSeaweed)
         {
-            if (structure.GetStructureType() == StructureType.TOUR_BASIC)
+            if (structure.GetStructureType() == StructureType.BASIC)
             {
-                structure.SetType(StructureType.TOUR_SEAWEED);
+                structure.SetType(StructureType.SEA);
             }
-            else if (structure.GetStructureType() == StructureType.WALL_BASIC)
-            {
-                structure.SetType(StructureType.WALL_SEAWEED);
-            }
-
         }
     }
     
