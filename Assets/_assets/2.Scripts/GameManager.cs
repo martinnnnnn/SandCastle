@@ -46,8 +46,15 @@ public class GameManager : MonoBehaviour
         useSeaweed = false;
     }
 
+
+    bool temp = true;
     void Update()
     {
+        if (temp)
+        {
+            temp = false;
+            FileReader.ReadWaveShape("Assets/wave.txt", 5, 5);
+        }
         switch (state)
         {
             case GameState.BUILDING:
