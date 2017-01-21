@@ -46,9 +46,11 @@ public class SandStructure : MonoBehaviour
         {
             model = Resources.Load<GameObject>("Structures/" + type.ToString() + "_HIGH") as GameObject;
         }
-        GameObject newModel = Instantiate(model, transform.position, new Quaternion()) as GameObject;
-        model = newModel;
-        
+        //GameObject newModel = Instantiate(model, transform.position, new Quaternion()) as GameObject;
+       // Destroy(model);
+        //model = newModel;
+        model = Instantiate(model, transform.position, new Quaternion()) as GameObject;
+
 
     }
 
