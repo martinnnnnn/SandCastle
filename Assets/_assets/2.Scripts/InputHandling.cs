@@ -57,8 +57,7 @@ public class InputHandling : MonoBehaviour
                 gameManager.SpawnStructure(tile);
                 return;
             }
-
-            SandStructure structure = info.collider.GetComponent<SandStructure>();
+            SandStructure structure = info.collider.GetComponentInParent<SandStructure>();
             if (structure)
             {
                 gameManager.ClickOnStructure(structure);

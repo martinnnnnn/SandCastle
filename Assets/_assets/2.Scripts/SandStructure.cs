@@ -36,21 +36,20 @@ public class SandStructure : MonoBehaviour
 
         if (isMidLife)
         {
-            Debug.Log("changing model");
             model = Resources.Load<GameObject>("Structures/" + type.ToString() + "_MID") as GameObject;
         }
         else if (isLowLife)
         {
-            Debug.Log("changing model");
             model = Resources.Load<GameObject>("Structures/" + type.ToString() + "_LOW") as GameObject;
         }
         else
         {
-            Debug.Log("changing model");
             model = Resources.Load<GameObject>("Structures/" + type.ToString() + "_HIGH") as GameObject;
         }
-
+        GameObject newModel = Instantiate(model, transform.position, new Quaternion()) as GameObject;
+        model = newModel;
         
+
     }
 
 
@@ -75,7 +74,7 @@ public class SandStructure : MonoBehaviour
                 case StructureType.TOUR_SEAWEED:
                 case StructureType.WALL_ROCK:
                 case StructureType.WALL_SEAWEED:
-                    ChangeLife(rockNseaweedBonus);
+                    //ChangeLife(rockNseaweedBonus);
                     break;
             }
         }
