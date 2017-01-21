@@ -46,5 +46,51 @@ public class SandGrid : MonoBehaviour
         return -1;
     }
 
+    public void computeCollisions(WaterMap waterMap)
+    {
+        foreach(WaterColumn column in waterMap.columns)
+        {
+            //Default values
+            column.yCollisionGrid = -1;
+            column.yPosColToMove = waterMap.wantedYStep;
+            //Check if collision
+            for (int i = 0; i <= waterMap.wantedYStep; i++)
+            {
+                if (!checkWantedStep(i, column)) break;
+            }
 
+            Debug.Log("column: " + column.xIndexCol + " togo:" + column.yPosColToMove);
+        }
+    }
+
+    public bool checkWantedStep(int index, WaterColumn column)
+    {
+        int numberblanck = 0;
+        for (int j = column.waterTiles.Count - 1; j >= column.waterTiles.Count - (index + 1); j--)
+        {
+            if (column.waterTiles[j] > 0)
+            {
+                Debug.Log("index: " + index);
+                Debug.Log("x: " + column.xIndexCol + " y:" + j + " " + (tiles[2, 2].HasStructure() ? "yes" : "no"));
+                //Debug.Log("TILE 2 2 : " + (tiles[2, 2].HasStructure() ? "yes" : "no"));
+                if (tiles[column.xIndexCol, index].HasStructure())
+                {
+                    Debug.Log("OKOKOK 222");
+                    column.yCollisionGrid = j;
+                    column.yPosColToMove = index - 1 + numberblanck;//!!!!!
+                    Debug.Log("yPosColToMove: " + column.yPosColToMove);
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                numberblanck++;
+            }
+        }
+        return true;
+    }
 }
