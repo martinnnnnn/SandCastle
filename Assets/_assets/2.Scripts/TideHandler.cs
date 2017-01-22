@@ -19,7 +19,7 @@ public class TideHandler : MonoBehaviour
 
     private float timeSinceLastMove;
 
-    private float spawnfrequency = 2;
+    public float spawnfrequency;
     private float timeSinceLastSpawn;
 
     void Awake()
@@ -61,7 +61,7 @@ public class TideHandler : MonoBehaviour
     {
         if (high)
         {
-            
+            high = false;
             value = 0f;
             while (value < 1.0)
             {
@@ -80,8 +80,9 @@ public class TideHandler : MonoBehaviour
                 value += step;
                 yield return new WaitForEndOfFrame();
             }
+            high = true;
         }
-        high = !high;
+        //high = !high;
     }
 
 }
