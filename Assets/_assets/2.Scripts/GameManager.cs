@@ -114,6 +114,7 @@ public class GameManager : MonoBehaviour
         {
             if (structure.GetStructureType() == StructureType.BASIC)
             {
+                SoundManager.Instance.PlaySound("Upgrade_Batiment");
                 structure.SetType(StructureType.SEA);
             }
         }

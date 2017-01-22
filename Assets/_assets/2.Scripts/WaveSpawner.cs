@@ -83,6 +83,7 @@ public class WaveSpawner : MonoBehaviour
         //first warning
         Vector3 startingPos = waterGrid.wg.transform.position;
         value = 0f;
+        SoundManager.Instance.PlaySound("Vague_" + Random.Range(1, 4));
         while (value < 1.0)
         {
             Sea.transform.position = Vector3.Lerp(
@@ -93,7 +94,10 @@ public class WaveSpawner : MonoBehaviour
             value += stepForward;
             yield return new WaitForEndOfFrame();
         }
+        SoundManager.Instance.PlaySound("Vague_" + Random.Range(1, 4));
+
         yield return new WaitForSeconds(timeBeforeBackUp);
+        SoundManager.Instance.PlaySound("Vague_" + Random.Range(1, 4));
 
         value = 0f;
         while (value < 1.0)
@@ -106,9 +110,12 @@ public class WaveSpawner : MonoBehaviour
             value += stepBackward;
             yield return new WaitForEndOfFrame();
         }
+        SoundManager.Instance.PlaySound("Vague_" + Random.Range(1, 4));
 
         //second warning
         yield return new WaitForSeconds(timeBetweenWarnings);
+        SoundManager.Instance.PlaySound("Vague_" + Random.Range(1, 4));
+
         value = 0f;
         while (value < 1.0)
         {
@@ -120,7 +127,10 @@ public class WaveSpawner : MonoBehaviour
             value += stepForward;
             yield return new WaitForEndOfFrame();
         }
+        SoundManager.Instance.PlaySound("Vague_" + Random.Range(1, 4));
+
         yield return new WaitForSeconds(timeBeforeBackUp);
+        SoundManager.Instance.PlaySound("Vague_" + Random.Range(1, 4));
 
         value = 0f;
         while (value < 1.0)
@@ -134,8 +144,11 @@ public class WaveSpawner : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
+        SoundManager.Instance.PlaySound("Vague_" + Random.Range(1, 4));
         //attack
         yield return new WaitForSeconds(timeBetweenWarnings);
+        SoundManager.Instance.PlaySound("Vague_" + Random.Range(1, 4));
+
         value = 0f;
         while (value < 1.0)
         {
@@ -147,6 +160,7 @@ public class WaveSpawner : MonoBehaviour
             value += stepForward;
             yield return new WaitForEndOfFrame();
         }
+        SoundManager.Instance.PlaySound("Vague_" + Random.Range(1, 4));
 
         StartCoroutine(waterGrid.moveForwardSmooth(waterGrid.waterMap.speed));
         value = 0f;
@@ -159,6 +173,7 @@ public class WaveSpawner : MonoBehaviour
             value += stepForward;
             yield return new WaitForEndOfFrame();
         }
+        SoundManager.Instance.PlaySound("Vague_" + Random.Range(1, 4));
 
     }
 

@@ -198,6 +198,7 @@ public class WaterGrid : MonoBehaviour{
 
         //Check collisions and set max y to go per column
         GameObject.Find(NAME_SANDGRID).SendMessage("computeCollisions", waterMap);
+        SoundManager.Instance.PlaySound("Vague_" + Random.Range(1, 4));
 
         //Init
         for (int i = 0; i < xSize; i++)
@@ -261,6 +262,8 @@ public class WaterGrid : MonoBehaviour{
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
+        SoundManager.Instance.PlaySound("Vague_" + Random.Range(1, 4));
+
         //waveA = StartCoroutine(waveAttacking());
         /*
         //Check attack => sand grid is doing it
