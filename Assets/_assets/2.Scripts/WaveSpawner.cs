@@ -13,6 +13,7 @@ public class WaveSpawner : MonoBehaviour
     public Transform firstWarningPoint;
     public Transform secondWarningPoint;
     public Transform attackPoint;
+    public Transform followPoint;
 
     //public string[] waveFilesEasy;
     //public string[] waveFilesMedium;
@@ -23,6 +24,8 @@ public class WaveSpawner : MonoBehaviour
 	public TextAsset[] waveFilesTwelveHits;
 	public TextAsset[] waveFilesForteenHits;
 
+    public GameObject Sea;
+
     private bool startWaves;
     private WaterGrid waterGrid;
 
@@ -32,6 +35,7 @@ public class WaveSpawner : MonoBehaviour
     {
         timeSinceLastWave = timeBetweenWaves;
         startWaves = false;
+        Sea.transform.position = new Vector3(hiddenPoint.position.x, hiddenPoint.position.y-0.1f, hiddenPoint.position.z);
     }
 
     void Start()
@@ -81,6 +85,10 @@ public class WaveSpawner : MonoBehaviour
         value = 0f;
         while (value < 1.0)
         {
+            Sea.transform.position = Vector3.Lerp(
+                new Vector3(hiddenPoint.position.x, hiddenPoint.position.y - 0.1f, hiddenPoint.position.z),
+                new Vector3(firstWarningPoint.position.x, firstWarningPoint.position.y - 0.1f, firstWarningPoint.position.z),
+                value);
             waterGrid.wg.transform.position = Vector3.Lerp(hiddenPoint.position, firstWarningPoint.position, value);
             value += stepForward;
             yield return new WaitForEndOfFrame();
@@ -90,6 +98,10 @@ public class WaveSpawner : MonoBehaviour
         value = 0f;
         while (value < 1.0)
         {
+            Sea.transform.position = Vector3.Lerp(
+                new Vector3(firstWarningPoint.position.x, firstWarningPoint.position.y - 0.1f, firstWarningPoint.position.z),
+                new Vector3(hiddenPoint.position.x, hiddenPoint.position.y - 0.1f, hiddenPoint.position.z),
+                value);
             waterGrid.wg.transform.position = Vector3.Lerp(firstWarningPoint.position, hiddenPoint.position, value);
             value += stepBackward;
             yield return new WaitForEndOfFrame();
@@ -100,6 +112,10 @@ public class WaveSpawner : MonoBehaviour
         value = 0f;
         while (value < 1.0)
         {
+            Sea.transform.position = Vector3.Lerp(
+                new Vector3(hiddenPoint.position.x, hiddenPoint.position.y - 0.1f, hiddenPoint.position.z),
+                new Vector3(secondWarningPoint.position.x, secondWarningPoint.position.y - 0.1f, secondWarningPoint.position.z),
+                value);
             waterGrid.wg.transform.position = Vector3.Lerp(hiddenPoint.position, secondWarningPoint.position, value);
             value += stepForward;
             yield return new WaitForEndOfFrame();
@@ -109,6 +125,10 @@ public class WaveSpawner : MonoBehaviour
         value = 0f;
         while (value < 1.0)
         {
+            Sea.transform.position = Vector3.Lerp(
+                new Vector3(secondWarningPoint.position.x, secondWarningPoint.position.y - 0.1f, secondWarningPoint.position.z),
+                new Vector3(hiddenPoint.position.x, hiddenPoint.position.y - 0.1f, hiddenPoint.position.z),
+                value);
             waterGrid.wg.transform.position = Vector3.Lerp(secondWarningPoint.position, hiddenPoint.position, value);
             value += stepBackward;
             yield return new WaitForEndOfFrame();
@@ -119,11 +139,26 @@ public class WaveSpawner : MonoBehaviour
         value = 0f;
         while (value < 1.0)
         {
+            Sea.transform.position = Vector3.Lerp(
+                new Vector3(hiddenPoint.position.x, hiddenPoint.position.y - 0.1f, hiddenPoint.position.z),
+                new Vector3(attackPoint.position.x, attackPoint.position.y - 0.1f, attackPoint.position.z),
+                value);
             waterGrid.wg.transform.position = Vector3.Lerp(hiddenPoint.position, attackPoint.position, value);
             value += stepForward;
             yield return new WaitForEndOfFrame();
         }
+
         StartCoroutine(waterGrid.moveForwardSmooth(waterGrid.waterMap.speed));
+        value = 0f;
+        while (value < 1.0)
+        {
+            Sea.transform.position = Vector3.Lerp(
+                new Vector3(attackPoint.position.x, attackPoint.position.y - 0.1f, attackPoint.position.z),
+                new Vector3(followPoint.position.x, followPoint.position.y - 0.1f, followPoint.position.z),
+                value);
+            value += stepForward;
+            yield return new WaitForEndOfFrame();
+        }
 
     }
 
