@@ -52,7 +52,7 @@ public class SandGrid : MonoBehaviour
             column.yCollisionGrid = -1;
             column.yPosColToMove = waterMap.wantedYStep;
             //Check if collision one by one (y0,y1,.. until reaching step end)
-            for (int i = 0; i <= waterMap.wantedYStep; i++)
+            for (int i = 0; i < waterMap.wantedYStep; i++)
             {
                 if (!checkWantedStep(i, column, waterMap.wantedYStep, waterMap.speed)) break;
             }
@@ -87,6 +87,8 @@ public class SandGrid : MonoBehaviour
         //Debug.Log("index: " + index);
         //Debug.Log("x: " + column.xIndexCol + " y:" + j + " " + (tiles[2, 2].HasStructure() ? "yes" : "no"));
         //Debug.Log("TILE 2 2 : " + (tiles[2, 2].HasStructure() ? "yes" : "no"));
+
+
         if (tiles[column.xIndexCol, index].HasStructure())
         {
             column.yCollisionGrid = j;

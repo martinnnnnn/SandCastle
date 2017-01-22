@@ -55,7 +55,7 @@ public class WaveSpawner : MonoBehaviour
                 if (waves != null) StopCoroutine(waves);
                 waves = StartCoroutine(spawnWave());
 
-                waterGrid.initMap(FileReader.ReadWaveShape(getPathToWave(), 5, 5));
+                waterGrid.initMap(FileReader.ReadWaveShape(getPathToWave(), 6, 4));
                 waterGrid.createGrid();
                 timeSinceLastWave = 0;
                 
@@ -66,7 +66,9 @@ public class WaveSpawner : MonoBehaviour
     //Assets/wave.txt
 
 
-    float step = 0.05f;
+    public float stepForward;
+    public float stepBackward;
+
     float value = 0f;
     private IEnumerator spawnWave()
     {
@@ -78,7 +80,7 @@ public class WaveSpawner : MonoBehaviour
         while (value < 1.0)
         {
             waterGrid.wg.transform.position = Vector3.Lerp(hiddenPoint.position, firstWarningPoint.position, value);
-            value += step;
+            value += stepForward;
             yield return new WaitForEndOfFrame();
         }
         yield return new WaitForSeconds(timeBeforeBackUp);
@@ -87,7 +89,7 @@ public class WaveSpawner : MonoBehaviour
         while (value < 1.0)
         {
             waterGrid.wg.transform.position = Vector3.Lerp(firstWarningPoint.position, hiddenPoint.position, value);
-            value += step;
+            value += stepBackward;
             yield return new WaitForEndOfFrame();
         }
 
@@ -97,7 +99,7 @@ public class WaveSpawner : MonoBehaviour
         while (value < 1.0)
         {
             waterGrid.wg.transform.position = Vector3.Lerp(hiddenPoint.position, secondWarningPoint.position, value);
-            value += step;
+            value += stepForward;
             yield return new WaitForEndOfFrame();
         }
         yield return new WaitForSeconds(timeBeforeBackUp);
@@ -106,7 +108,7 @@ public class WaveSpawner : MonoBehaviour
         while (value < 1.0)
         {
             waterGrid.wg.transform.position = Vector3.Lerp(secondWarningPoint.position, hiddenPoint.position, value);
-            value += step;
+            value += stepBackward;
             yield return new WaitForEndOfFrame();
         }
 
@@ -116,7 +118,7 @@ public class WaveSpawner : MonoBehaviour
         while (value < 1.0)
         {
             waterGrid.wg.transform.position = Vector3.Lerp(hiddenPoint.position, attackPoint.position, value);
-            value += step;
+            value += stepForward;
             yield return new WaitForEndOfFrame();
         }
         StartCoroutine(waterGrid.moveForwardSmooth(waterGrid.waterMap.speed));

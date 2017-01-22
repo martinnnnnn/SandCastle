@@ -227,7 +227,13 @@ public class WaterGrid : MonoBehaviour{
             {
                 if (elapsedTime < durations[i])
                 {
-                    columns[i].transform.localPosition = Vector3.Lerp(startingPositions[i], endingPositions[i], (elapsedTime / durations[i]));
+                    if (columns != null)
+                    {
+                        if (columns[i])
+                        {
+                            columns[i].transform.localPosition = Vector3.Lerp(startingPositions[i], endingPositions[i], (elapsedTime / durations[i]));
+                        }
+                    }
                 }
                 else if(indexesLeft.Contains(i))
                 {

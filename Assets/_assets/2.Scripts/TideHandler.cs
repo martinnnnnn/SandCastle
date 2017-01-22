@@ -34,6 +34,7 @@ public class TideHandler : MonoBehaviour
             timeSinceLastMove = 0;
             StartCoroutine(MoveTide());
         }
+        // si la mer est haute
         else if (high)
         {
             //Instantiate(SeaweedPrefab,)

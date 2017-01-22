@@ -81,35 +81,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        //else if (tile.HasStructure() && useRock)
-        //{
-        //    Debug.Log("in spawn rock");
-        //    SandStructure structure = tile.GetStructure().GetComponent<SandStructure>();
-
-        //    if (structure.GetStructureType() == StructureType.TOUR_BASIC) /*|| structure.GetStructureType() == StructureType.TOUR_SEAWEED*/
-        //    {
-        //        structure.SetType(StructureType.TOUR_ROCK);
-        //    }
-           
-        //    if (structure.GetStructureType() == StructureType.WALL_BASIC) /*|| structure.GetStructureType() == StructureType.WALL_SEAWEED*/
-        //    {
-        //        structure.SetType(StructureType.WALL_ROCK);
-        //    }
-        //}
-        //else if (tile.HasStructure() && useSeaweed)
-        //{
-        //    Debug.Log("in spawn sea");
-        //    SandStructure structure = tile.GetStructure().GetComponent<SandStructure>();
-
-        //    if (structure.GetStructureType() == StructureType.TOUR_BASIC) /*|| structure.GetStructureType() == StructureType.TOUR_ROCK*/
-        //    {
-        //        structure.SetType(StructureType.TOUR_SEAWEED);
-        //    }
-        //    if (structure.GetStructureType() == StructureType.WALL_BASIC) /* || structure.GetStructureType() == StructureType.WALL_ROCK*/
-        //    {
-        //        structure.SetType(StructureType.WALL_SEAWEED);
-        //    }
-        //}
+ 
     }
 
 

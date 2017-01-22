@@ -35,17 +35,7 @@ public class FileReader : MonoBehaviour
                 }
             }
         }
-
-
-
-
-        for (int i = 0; i < waveMap.Length; i++)
-        {
-            for (int j = 0; j < waveMap[i].Length; j++)
-            {
-                Debug.Log(waveMap[i][j]);
-            }
-        }
+        
         return waveMap;
     }
 
