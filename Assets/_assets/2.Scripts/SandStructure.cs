@@ -131,6 +131,7 @@ public class SandStructure : MonoBehaviour
     {
         
         life += value;
+        SoundManager.Instance.PlaySound("Vague_Hit_Chateau");
         Debug.Log("take damage " + value + " life:" + life);
         /*
         if (life < 0)
