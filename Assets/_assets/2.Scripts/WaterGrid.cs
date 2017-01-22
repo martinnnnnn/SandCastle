@@ -91,6 +91,10 @@ public class WaterGrid : MonoBehaviour{
             {
                 GameObject.Destroy(child.gameObject);
             }
+
+            wg.transform.localRotation = Quaternion.identity;
+            wg.transform.localPosition = Vector3.zero;
+            wg.transform.localScale = Vector3.one;
         }
 
         //
@@ -120,10 +124,10 @@ public class WaterGrid : MonoBehaviour{
 
 
         //wg.transform.position += new Vector3(-49.5f, 0, 32.7f);
-        if (once)
+        /*if (once)
         {
             once = false;
-        }
+        }*/
         wg.transform.Rotate(new Vector3(0, 90f, 0));
         //wg.transform.localPosition += new Vector3(0, 0, planeBounds.size.x * ySize);
         //wg.transform.position = GetComponent<WaveSpawner>().hiddenPoint.position;
@@ -237,7 +241,11 @@ public class WaterGrid : MonoBehaviour{
             Debug.Log("Sending message damage to structure : y=" + col.yCollisionGrid + " x=" + col.xIndexCol);
         }
         */
-        waveV = StartCoroutine(waveVanishing());
+
+
+
+        //VANISHING
+        //waveV = StartCoroutine(waveVanishing());
     }
 
     IEnumerator waveVanishing()

@@ -42,13 +42,14 @@ public class WaveSpawner : MonoBehaviour
             timeSinceLastWave += Time.deltaTime;
             if (timeSinceLastWave > timeBetweenWaves)
             {
-               // waterGrid.destroyGrid();
+                if (waves != null) StopCoroutine(waves);
+                waves = StartCoroutine(spawnWave());
+                // waterGrid.destroyGrid();
                 waterGrid.initMap(FileReader.ReadWaveShape("Assets/wave.txt", 5, 5));
                 waterGrid.createGrid();
                 Debug.Log("mescouilles");
                 timeSinceLastWave = 0;
-                if (waves != null) StopCoroutine(spawnWave());
-                waves = StartCoroutine(spawnWave());
+                
             }
         }
     }
