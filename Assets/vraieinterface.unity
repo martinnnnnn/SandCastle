@@ -3096,6 +3096,11 @@ Prefab:
       propertyPath: leftAnchor.relative
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012903775438, guid: e37c5064d7fe6b94a8f5086629f8aac5,
+        type: 2}
+      propertyPath: mFixedAspect
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e37c5064d7fe6b94a8f5086629f8aac5, type: 2}
   m_IsPrefabParent: 0
