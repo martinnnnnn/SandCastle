@@ -4,6 +4,7 @@ using System.Collections;
 public class WaveSpawner : MonoBehaviour
 {
     
+    public float numberOfWaves;
     public float timeBetweenWaves;
     public float timeBetweenWarnings;
     public float timeBeforeBackUp;
@@ -12,6 +13,10 @@ public class WaveSpawner : MonoBehaviour
     public Transform firstWarningPoint;
     public Transform secondWarningPoint;
     public Transform attackPoint;
+
+    public string[] waveFilesEasy;
+    public string[] waveFilesMedium;
+    public string[] waveFilesHard;
 
     private bool startWaves;
     private WaterGrid waterGrid;
@@ -40,20 +45,22 @@ public class WaveSpawner : MonoBehaviour
         if (startWaves)
         {
             timeSinceLastWave += Time.deltaTime;
-            if (timeSinceLastWave > timeBetweenWaves)
+            if (timeSinceLastWave > timeBetweenWaves && numberOfWaves > 0)
             {
+                numberOfWaves--;
+
                 if (waves != null) StopCoroutine(waves);
                 waves = StartCoroutine(spawnWave());
-                // waterGrid.destroyGrid();
-                waterGrid.initMap(FileReader.ReadWaveShape("Assets/wave.txt", 5, 5));
+
+                waterGrid.initMap(FileReader.ReadWaveShape(getPathToWave(), 5, 5));
                 waterGrid.createGrid();
-                Debug.Log("mescouilles");
                 timeSinceLastWave = 0;
                 
             }
         }
     }
 
+    //Assets/wave.txt
 
 
     float step = 0.05f;
@@ -111,6 +118,22 @@ public class WaveSpawner : MonoBehaviour
         }
         StartCoroutine(waterGrid.moveForwardSmooth(waterGrid.waterMap.speed));
 
+    }
+
+    private string getPathToWave()
+    {
+        if (numberOfWaves < 3)
+        {
+            return waveFilesHard[Random.Range(0, waveFilesHard.Length)];
+        }
+        else if (numberOfWaves < 6)
+        {
+            return waveFilesMedium[Random.Range(0, waveFilesMedium.Length)];
+        }
+        else
+        {
+            return waveFilesEasy[Random.Range(0, waveFilesEasy.Length)];
+        }
     }
 
 
