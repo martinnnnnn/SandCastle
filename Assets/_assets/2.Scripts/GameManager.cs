@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     private GameObject currentPrefab;
 
 
+    public ButtonsHandler buttonsHandler;
+    
     public int sandQuantityMax;
     private int sandQuantityCurrent;
 
@@ -37,7 +39,8 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        sandQuantityCurrent = sandQuantityMax;
+        
+        //sandQuantityCurrent = sandQuantityMax;
         rocksQuantity = 0;
         seaweedQuantity = 0;
         state = GameState.BUILDING;
@@ -51,7 +54,7 @@ public class GameManager : MonoBehaviour
         waterGrid = GetComponent<WaterGrid>();
         //waterGrid.initMap(FileReader.ReadWaveShape("Assets/wave.txt", 5, 5));
         //waterGrid.createGrid();
-
+        ChangeSandValue(sandQuantityMax);
         //waterGrid.wg.transform.position = GetComponent<WaveSpawner>().hiddenPoint.position;
     }
     
@@ -67,14 +70,16 @@ public class GameManager : MonoBehaviour
         {
             if (currentPrefab == tourPrefab && sandQuantityCurrent >= tourSandValue)
             {
-                sandQuantityCurrent -= tourSandValue;
+                ChangeSandValue(-tourSandValue);
+                //sandQuantityCurrent -= tourSandValue;
                 GameObject sandStructure = (GameObject)Instantiate(currentPrefab, tile.transform.position, new Quaternion());
                 //sandStructure.SendMessage("SetType", StructureType.TOUR_BASIC);
                 tile.SetStructure(sandStructure);
             }
             else if (currentPrefab == wallPrefab && sandQuantityCurrent >= wallSandValue)
             {
-                sandQuantityCurrent -= wallSandValue;
+                ChangeSandValue(-wallSandValue);
+                //sandQuantityCurrent -= wallSandValue;
                 GameObject sandStructure = (GameObject)Instantiate(currentPrefab, tile.transform.position, new Quaternion());
                 //sandStructure.SendMessage("SetType", StructureType.WALL_BASIC);
                 tile.SetStructure(sandStructure);
@@ -108,16 +113,19 @@ public class GameManager : MonoBehaviour
     public void ChangeSandValue(int amount)
     {
         sandQuantityCurrent += amount;
+        buttonsHandler.ChangeBucketAmount(amount);
     }
 
     public void ChangeRockValue(int amount)
     {
         rocksQuantity += amount;
+        buttonsHandler.ChangeRockAmount(amount);
     }
 
     public void ChangeSeaweedValue(int amount)
     {
         seaweedQuantity += amount;
+        buttonsHandler.ChangeSeaAmount(amount);
     }
 
 
