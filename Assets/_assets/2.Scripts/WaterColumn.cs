@@ -26,7 +26,9 @@ public class WaterColumn {
         this.yCollisionGrid = -1;
         this.yPosCol = 0;
         this.yPosColToMove = 0;
+        this.waterTiles = new List<int>();
         this.waterTiles.AddRange(waterTiles);
+
         //tilesY = tiles;
     }
 

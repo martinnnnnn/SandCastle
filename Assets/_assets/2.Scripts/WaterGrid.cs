@@ -8,7 +8,7 @@ public class WaterGrid : MonoBehaviour{
     //public GameObject[] sfx;
     //private List<GameObject> sfxInstanciated;
 
-    WaterMap waterMap;
+    public WaterMap waterMap;
     //public List<Column> waterColumns;
     //public List<Link> linkMap;
 
@@ -20,21 +20,32 @@ public class WaterGrid : MonoBehaviour{
     private Bounds planeBounds;
 
     private const string NAME_COLUMN = "COL";
-    private const string NAME_WATERGRID = "WATERGRID";
+    private const string NAME_WATERGRID = "WG";
     private const string NAME_SANDGRID = "SandGrid";
 
     Coroutine waveM;//move
     Coroutine waveA;//attack
     Coroutine waveV;//vanish
 
+
+    public GameObject wg;
+
+    void Awake()
+    {
+        planeBounds = waterTile.GetComponent<MeshRenderer>().bounds;
+
+    }
+
     public void Start() {
         //this.waterColumns = new List<Column>(xSize);
 
-        planeBounds = waterTile.GetComponent<MeshRenderer>().bounds;
+        //planeBounds = waterTile.GetComponent<MeshRenderer>().bounds;
 
         //sfxInstanciated = new List<GameObject>();
 
         //initMap();
+        //createGrid();
+        //initMap(FileReader.ReadWaveShape("Assets/wave.txt", 5, 5));
         //createGrid();
     }
 
@@ -62,14 +73,15 @@ public class WaterGrid : MonoBehaviour{
 
     public void initMap(int[][] waveShape)
     {
+        
         waterMap = new WaterMap(waveShape);
     }
 
-
+    bool once = true;
     public void createGrid()
     {
-        GameObject wg = GameObject.Find(NAME_WATERGRID);
-        if(wg == null)
+        //wg = GameObject.Find(NAME_WATERGRID);
+        if(!wg)
         {
             wg = new GameObject(NAME_WATERGRID);
         }
@@ -79,6 +91,10 @@ public class WaterGrid : MonoBehaviour{
             {
                 GameObject.Destroy(child.gameObject);
             }
+
+            wg.transform.localRotation = Quaternion.identity;
+            wg.transform.localPosition = Vector3.zero;
+            wg.transform.localScale = Vector3.one;
         }
 
         //
@@ -106,15 +122,20 @@ public class WaterGrid : MonoBehaviour{
             }
         }
 
-        
-        wg.transform.position += new Vector3(-49.5f, 0, 32.7f);
-        wg.transform.localPosition += new Vector3(0, 0, planeBounds.size.x * ySize);
+
+        //wg.transform.position += new Vector3(-49.5f, 0, 32.7f);
+        /*if (once)
+        {
+            once = false;
+        }*/
         wg.transform.Rotate(new Vector3(0, 90f, 0));
+        //wg.transform.localPosition += new Vector3(0, 0, planeBounds.size.x * ySize);
+        //wg.transform.position = GetComponent<WaveSpawner>().hiddenPoint.position;
     }
 
-    void destroyGrid()
+    public void destroyGrid()
     {
-        GameObject wg = GameObject.Find(NAME_WATERGRID);
+        //GameObject wg = GameObject.Find(NAME_WATERGRID);
         if (wg != null)
         {
             foreach (Transform child in wg.transform)
@@ -124,7 +145,7 @@ public class WaterGrid : MonoBehaviour{
         }
     }
 
-    IEnumerator moveForwardSmooth(float speed)//int xColumn, int numberTilesForward, float speed)
+    public IEnumerator moveForwardSmooth(float speed)//int xColumn, int numberTilesForward, float speed)
     {
         /*
         //yield return new WaitForSeconds(time);
@@ -220,7 +241,11 @@ public class WaterGrid : MonoBehaviour{
             Debug.Log("Sending message damage to structure : y=" + col.yCollisionGrid + " x=" + col.xIndexCol);
         }
         */
-        waveV = StartCoroutine(waveVanishing());
+
+
+
+        //VANISHING
+        //waveV = StartCoroutine(waveVanishing());
     }
 
     IEnumerator waveVanishing()
@@ -266,7 +291,7 @@ public class WaterGrid : MonoBehaviour{
         if(delta >= 5)
         {
             //generateRandomMoves();
-            waveM = StartCoroutine(moveForwardSmooth(waterMap.speed));
+            //waveM = StartCoroutine(moveForwardSmooth(waterMap.speed));
             delta = -999;
         }
 
@@ -327,4 +352,6 @@ public class WaterGrid : MonoBehaviour{
         Debug.Log(mappy);
     }
     */
+
+  
 }

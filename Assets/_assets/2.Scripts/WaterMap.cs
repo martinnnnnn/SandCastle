@@ -40,7 +40,6 @@ public class WaterMap {
 
         for (int i = 0; i < map.Length; i++)
         {
-           
             columns.Add(new WaterColumn(i, map[i]));
             
         }
