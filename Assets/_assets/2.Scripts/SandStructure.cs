@@ -104,6 +104,7 @@ public class SandStructure : MonoBehaviour
 
         SetFalse();
         basicHigh.SetActive(true);
+		ChangeLife (-2);
     }
     
     
