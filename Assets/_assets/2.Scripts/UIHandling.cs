@@ -25,9 +25,14 @@ public class UIHandling : MonoBehaviour
 
     public void OnWallClick()
     {
+        gameManager.SetWall2();
+    }
+
+    public void OnWall2Click()
+    {
         gameManager.SetWall();
     }
-    
+
 
 
     public void OnLeftClick()
