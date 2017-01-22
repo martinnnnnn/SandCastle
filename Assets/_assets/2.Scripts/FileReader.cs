@@ -23,16 +23,17 @@ public class FileReader : MonoBehaviour
                 while (sr.Peek() >= 0)
                 {
                     string line = sr.ReadLine();
-                    for (int j = 0; j < x; j++)
+
+                    for (int j = 0; j < line.Length; j++)
                     {
-                        Debug.Log(line[i]);
-                        if (line[i] == 1)
+                        //Debug.Log(line[i]);
+                        if (line[j] == '1')
                         {
-                            waveMap[i][j] = 1;
+                            waveMap[j][i] = 1;
                         } 
                         else
                         {
-                            waveMap[i][j] = 0;
+                            waveMap[j][i] = 0;
                         }
                     }
                     i++;
@@ -45,6 +46,13 @@ public class FileReader : MonoBehaviour
             Debug.Log(e.Message);
         }
 
+        //for (int i = 0; i < waveMap.Length; i++)
+        //{
+        //    for (int j = 0; j < waveMap[i].Length; j++)
+        //    {
+        //        Debug.Log(waveMap[i][j]);
+        //    }
+        //}
         return waveMap;
     }
 

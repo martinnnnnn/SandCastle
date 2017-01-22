@@ -49,32 +49,15 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         waterGrid = GetComponent<WaterGrid>();
+        //waterGrid.initMap(FileReader.ReadWaveShape("Assets/wave.txt", 5, 5));
+        //waterGrid.createGrid();
 
-        FileReader.ReadWaveShape("Assets/wave.txt", 5, 5);
-
+        //waterGrid.wg.transform.position = GetComponent<WaveSpawner>().hiddenPoint.position;
     }
-
-
-    bool temp = true;
+    
     void Update()
     {
-        if (temp)
-        {
-            temp = false;
-            FileReader.ReadWaveShape("Assets/wave.txt", 5, 5);
-        }
-        switch (state)
-        {
-            case GameState.BUILDING:
 
-
-                break;
-            case GameState.FIGHTING:
-
-                handleWaves();
-
-                break;
-        }
     }
 
     public void SpawnStructure(SandTile tile)
@@ -219,12 +202,8 @@ public class GameManager : MonoBehaviour
 
     public void StartFight()
     {
-        state = GameState.FIGHTING;
 
+        GetComponent<WaveSpawner>().StartWaves();
     }
-
-    private void handleWaves()
-    {
-
-    }
+    
 }
