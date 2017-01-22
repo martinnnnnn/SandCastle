@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public int tourSandValue;
     public GameObject wallPrefab;
     public int wallSandValue;
+    public GameObject wallPrefab2;
+
 
     private GameObject currentPrefab;
 
@@ -77,6 +79,14 @@ public class GameManager : MonoBehaviour
                 tile.SetStructure(sandStructure);
             }
             else if (currentPrefab == wallPrefab && sandQuantityCurrent >= wallSandValue)
+            {
+                ChangeSandValue(-wallSandValue);
+                //sandQuantityCurrent -= wallSandValue;
+                GameObject sandStructure = (GameObject)Instantiate(currentPrefab, tile.transform.position, new Quaternion());
+                //sandStructure.SendMessage("SetType", StructureType.WALL_BASIC);
+                tile.SetStructure(sandStructure);
+            }
+            else if (currentPrefab == wallPrefab2 && sandQuantityCurrent >= wallSandValue)
             {
                 ChangeSandValue(-wallSandValue);
                 //sandQuantityCurrent -= wallSandValue;
@@ -152,6 +162,20 @@ public class GameManager : MonoBehaviour
         if (currentPrefab != wallPrefab)
         {
             currentPrefab = wallPrefab;
+        }
+        else
+        {
+            currentPrefab = null;
+        }
+    }
+
+    public void SetWall2()
+    {
+        useRock = false;
+        useSeaweed = false;
+        if (currentPrefab != wallPrefab2)
+        {
+            currentPrefab = wallPrefab2;
         }
         else
         {
