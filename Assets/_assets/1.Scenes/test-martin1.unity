@@ -2032,7 +2032,7 @@ MonoBehaviour:
   wallPrefab: {fileID: 1000011208425858, guid: 9a850ca99da01024cb9ba0b7bee7aeb2, type: 2}
   wallSandValue: 1
   buttonsHandler: {fileID: 809010742}
-  sandQuantityMax: 50
+  sandQuantityMax: 3
 --- !u!4 &933535293
 Transform:
   m_ObjectHideFlags: 0

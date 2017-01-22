@@ -113,6 +113,7 @@ public class GameManager : MonoBehaviour
     public void ChangeSandValue(int amount)
     {
         sandQuantityCurrent += amount;
+        if (sandQuantityCurrent > 4) sandQuantityCurrent = 4;
         buttonsHandler.ChangeBucketAmount(amount);
     }
 

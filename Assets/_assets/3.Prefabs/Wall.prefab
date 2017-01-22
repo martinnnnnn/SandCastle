@@ -944,7 +944,7 @@ MonoBehaviour:
   seaLow: {fileID: 1000012557962454}
   maxLife: 2
   midLife: 1
-  lowLife: 1
+  lowLife: 0
   rockBonus: 0
   seaBonus: 0
 --- !u!114 &114000011557570604
