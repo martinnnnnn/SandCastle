@@ -672,8 +672,8 @@ MonoBehaviour:
   seaHigh: {fileID: 1000014248151608}
   seaMid: {fileID: 1000010916720234}
   seaLow: {fileID: 1000012180083820}
-  maxLife: 0
-  midLife: 0
+  maxLife: 20
+  midLife: 10
   lowLife: 0
   rockBonus: 0
   seaBonus: 0
