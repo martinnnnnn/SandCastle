@@ -24,7 +24,7 @@ GameObject:
   - 23: {fileID: 23000013776204856}
   - 114: {fileID: 114000011729486620}
   m_Layer: 8
-  m_Name: Tile
+  m_Name: SandTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -17,9 +17,11 @@ public class WaveSpawner : MonoBehaviour
     //public string[] waveFilesEasy;
     //public string[] waveFilesMedium;
     //public string[] waveFilesHard;
-    public TextAsset[] waveFilesEasy;
-    public TextAsset[] waveFilesMedium;
-    public TextAsset[] waveFilesHard;
+    public TextAsset[] waveFilesSixHits;
+    public TextAsset[] waveFilesEightHits;
+    public TextAsset[] waveFilesTenHits;
+	public TextAsset[] waveFilesTwelveHits;
+	public TextAsset[] waveFilesForteenHits;
 
     private bool startWaves;
     private WaterGrid waterGrid;
@@ -129,15 +131,23 @@ public class WaveSpawner : MonoBehaviour
     {
         if (numberOfWaves < 3)
         {
-            return waveFilesHard[Random.Range(0, waveFilesHard.Length)];
+			return waveFilesForteenHits[Random.Range(0, waveFilesForteenHits.Length)];
         }
-        else if (numberOfWaves < 6)
+        else if (numberOfWaves < 5)
         {
-            return waveFilesMedium[Random.Range(0, waveFilesMedium.Length)];
+			return waveFilesTwelveHits[Random.Range(0, waveFilesTwelveHits.Length)];
         }
+		else if (numberOfWaves < 7)
+		{
+			return waveFilesTenHits[Random.Range(0,  waveFilesTenHits.Length)];
+		}
+		else if (numberOfWaves < 9)
+		{
+			return waveFilesEightHits[Random.Range(0, waveFilesEightHits.Length)];
+		}
         else
         {
-            return waveFilesEasy[Random.Range(0, waveFilesEasy.Length)];
+			return waveFilesSixHits[Random.Range(0, waveFilesSixHits.Length)];
         }
     }
 }
