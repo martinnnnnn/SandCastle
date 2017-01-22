@@ -49,6 +49,7 @@ public class SandStructure : MonoBehaviour
         {
             if (type == StructureType.BASIC)
             {
+                Debug.Log("mescouilles");
                 basicMid.SetActive(true);
             }
             else if (type == StructureType.ROCK)
@@ -104,7 +105,7 @@ public class SandStructure : MonoBehaviour
 
         SetFalse();
         basicHigh.SetActive(true);
-		ChangeLife (-2);
+        ChangeLife(-1);
     }
     
     
