@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class SandGrid : MonoBehaviour
 {
@@ -53,14 +54,20 @@ public class SandGrid : MonoBehaviour
             //Check if collision one by one (y0,y1,.. until reaching step end)
             for (int i = 0; i <= waterMap.wantedYStep; i++)
             {
-                if (!checkWantedStep(i, column, waterMap.wantedYStep)) break;
+                if (!checkWantedStep(i, column, waterMap.wantedYStep, waterMap.speed)) break;
             }
 
             Debug.Log("column: " + column.xIndexCol + " togo:" + column.yPosColToMove);
         }
     }
 
-    public bool checkWantedStep(int index, WaterColumn column, int wantedYStep)
+    IEnumerator takeDamage(SandTile tile, float waitSeconds, int damage)
+    {
+        yield return new WaitForSeconds(waitSeconds);
+        tile.GetStructure().SendMessage("ChangeLife", damage);
+    }
+
+    public bool checkWantedStep(int index, WaterColumn column, int wantedYStep, float speed)
     {
         //Get last tile water, beginning from bottom
         int j = column.waterTiles.Count - 1;
@@ -85,9 +92,13 @@ public class SandGrid : MonoBehaviour
             column.yCollisionGrid = j;
             column.yPosColToMove = index - 1 + numberblanck;//!!!!!
             //Debug.Log("yPosColToMove: " + column.yPosColToMove);
-            
+
             //Take damage
-            tiles[column.xIndexCol, index].GetStructure().SendMessage("ChangeLife", -(wantedYStep - index));
+
+            float time = (tileSize.x * (column.yPosColToMove + 1)) / speed;
+            Debug.Log("time damage: " + time);
+
+            StartCoroutine(takeDamage(tiles[column.xIndexCol, index], time, -(wantedYStep - index)));
 
             return false;
         }
