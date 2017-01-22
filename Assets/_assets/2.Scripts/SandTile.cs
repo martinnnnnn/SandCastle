@@ -84,12 +84,24 @@ public class SandTile : MonoBehaviour
             if(child.gameObject.activeSelf)
             {
                 Debug.Log("active" + child.gameObject.name);
-                child.GetComponent<CapsuleCollider>().enabled = false;
+                CapsuleCollider caps = child.GetComponent<CapsuleCollider>();
+                if(caps != null)
+                    caps.enabled = false;
             }
         }
         //sandStructure = null;
         hasStructure = false;
     }
     
-
+    /*
+    public void willStructureDie(int damage)
+    {
+        if (hasStructure)
+        {
+            if()
+            return sandStructure.checkWillDie(damage);
+        }
+            
+    }
+    */
 }
