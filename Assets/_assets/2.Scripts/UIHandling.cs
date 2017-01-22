@@ -6,7 +6,7 @@ public class UIHandling : MonoBehaviour
 {
 
     public GameManager gameManager;
-    public Button fightButton;
+    public GameObject fightButton;
 
     private CameraHandler cameraHandler;
 
