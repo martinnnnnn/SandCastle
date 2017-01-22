@@ -63,7 +63,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000011244392458
 GameObject:
   m_ObjectHideFlags: 1
@@ -944,7 +944,7 @@ MonoBehaviour:
   seaLow: {fileID: 1000012557962454}
   maxLife: 2
   midLife: 1
-  lowLife: 1
+  lowLife: 0
   rockBonus: 0
   seaBonus: 0
 --- !u!114 &114000011557570604
