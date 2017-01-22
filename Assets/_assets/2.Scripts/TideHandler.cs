@@ -44,7 +44,7 @@ public class TideHandler : MonoBehaviour
         else if (high && timeSinceLastSpawn > spawnfrequency)
         {
             timeSinceLastSpawn = 0;
-            for (int i = 0; i < Random.Range(2,6); i++)
+            for (int i = 0; i < Random.Range(1,3); i++)
             {
                 float x = Random.Range(topLeftSpawn.position.x, bottomRightSpawn.position.x);
                 float z = Random.Range(bottomRightSpawn.position.z, topLeftSpawn.position.z);

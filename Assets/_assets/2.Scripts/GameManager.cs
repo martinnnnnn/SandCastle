@@ -135,12 +135,20 @@ public class GameManager : MonoBehaviour
     public void ChangeRockValue(int amount)
     {
         rocksQuantity += amount;
+        if (rocksQuantity > 3)
+        {
+            rocksQuantity = 3;
+        }
         buttonsHandler.ChangeRockAmount(amount);
     }
 
     public void ChangeSeaweedValue(int amount)
     {
         seaweedQuantity += amount;
+        if (seaweedQuantity > 3)
+        {
+            seaweedQuantity = 3;
+        }
         buttonsHandler.ChangeSeaAmount(amount);
     }
 
