@@ -170,7 +170,7 @@ public class WaveSpawner : MonoBehaviour
                 new Vector3(attackPoint.position.x, attackPoint.position.y - 0.1f, attackPoint.position.z),
                 new Vector3(followPoint.position.x, followPoint.position.y - 0.1f, followPoint.position.z),
                 value);
-            value += stepForward;
+            value += 0.005f;
             yield return new WaitForEndOfFrame();
         }
         SoundManager.Instance.PlaySound("Vague_" + Random.Range(1, 4));

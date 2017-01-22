@@ -6,8 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_assets/1.Scenes/rendu.unity
+  - enabled: 0
     path: Assets/_assets/1.Scenes/title-screen.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/_assets/1.Scenes/test-martin1.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/_assets/1.Scenes/vraieinterface.unity
