@@ -151,6 +151,17 @@ public class SandStructure : MonoBehaviour
         }
     }
 
+    /*
+    public bool checkWillDie(int damage)
+    {
+        if ((life + damage) <= lowLife && !isLowLife)
+        {
+            return true;
+        }
+        return false;
+    }
+    */
+
     private void SetFalse()
     {
         basicHigh.SetActive(false);
