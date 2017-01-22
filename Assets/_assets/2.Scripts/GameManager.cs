@@ -74,7 +74,8 @@ public class GameManager : MonoBehaviour
             {
                 ChangeSandValue(-tourSandValue);
                 //sandQuantityCurrent -= tourSandValue;
-                GameObject sandStructure = (GameObject)Instantiate(currentPrefab, tile.transform.position, new Quaternion());
+                GameObject sandStructure = (GameObject)Instantiate(currentPrefab, new Vector3(tile.transform.position.x, -3f, tile.transform.position.z), new Quaternion());
+                
                 //sandStructure.SendMessage("SetType", StructureType.TOUR_BASIC);
                 tile.SetStructure(sandStructure);
             }
@@ -83,6 +84,8 @@ public class GameManager : MonoBehaviour
                 ChangeSandValue(-wallSandValue);
                 //sandQuantityCurrent -= wallSandValue;
                 GameObject sandStructure = (GameObject)Instantiate(currentPrefab, tile.transform.position, new Quaternion());
+                //sandStructure.transform.position = new Vector3(tile.transform.position.x, -0.9f, tile.transform.position.z);
+
                 //sandStructure.SendMessage("SetType", StructureType.WALL_BASIC);
                 tile.SetStructure(sandStructure);
             }
