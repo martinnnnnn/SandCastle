@@ -1279,6 +1279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1b9c209f75e6724a8c32ac0549359f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfWaves: 10
   timeBetweenWaves: 30
   timeBetweenWarnings: 5
   timeBeforeBackUp: 2
@@ -1286,6 +1287,15 @@ MonoBehaviour:
   firstWarningPoint: {fileID: 1036575333}
   secondWarningPoint: {fileID: 1879253814}
   attackPoint: {fileID: 382639851}
+  waveFilesEasy:
+  - Assets/wave1.txt
+  - Assets/wave2.txt
+  waveFilesMedium:
+  - Assets/wave3.txt
+  - Assets/wave4.txt
+  waveFilesHard:
+  - Assets/wave5.txt
+  - Assets/wave6.txt
 --- !u!1 &981659573
 GameObject:
   m_ObjectHideFlags: 0
