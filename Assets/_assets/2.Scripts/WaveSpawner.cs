@@ -14,9 +14,12 @@ public class WaveSpawner : MonoBehaviour
     public Transform secondWarningPoint;
     public Transform attackPoint;
 
-    public string[] waveFilesEasy;
-    public string[] waveFilesMedium;
-    public string[] waveFilesHard;
+    //public string[] waveFilesEasy;
+    //public string[] waveFilesMedium;
+    //public string[] waveFilesHard;
+    public TextAsset[] waveFilesEasy;
+    public TextAsset[] waveFilesMedium;
+    public TextAsset[] waveFilesHard;
 
     private bool startWaves;
     private WaterGrid waterGrid;
@@ -120,7 +123,7 @@ public class WaveSpawner : MonoBehaviour
 
     }
 
-    private string getPathToWave()
+    private TextAsset getPathToWave()
     {
         if (numberOfWaves < 3)
         {

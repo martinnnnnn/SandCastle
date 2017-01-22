@@ -87,9 +87,15 @@ public class WaterGrid : MonoBehaviour{
         }
         else
         {
-            foreach (Transform child in wg.transform)
+            //foreach (Transform child in wg.transform)
+            //{
+            //    GameObject.Destroy(child.gameObject);
+            //}
+            
+            
+            for (int i = 0; i < wg.transform.childCount; i++)
             {
-                GameObject.Destroy(child.gameObject);
+                Destroy(wg.transform.GetChild(i).gameObject);
             }
 
             wg.transform.localRotation = Quaternion.identity;
