@@ -27,6 +27,7 @@ public class WaterGrid : MonoBehaviour{
     Coroutine waveA;//attack
     Coroutine waveV;//vanish
 
+    public GameObject fxPrefab;
 
     public GameObject wg;
 
@@ -208,8 +209,8 @@ public class WaterGrid : MonoBehaviour{
             float pathLength = (startingPositions[i] - endingPositions[i]).magnitude;
             durations.Add(pathLength / speed);
 
-            waterMap.columns[i].yPosCol = waterMap.columns[i].yPosColToMove;
-            waterMap.columns[i].yPosColToMove = 0;
+            //waterMap.columns[i].yPosCol = waterMap.columns[i].yPosColToMove;
+            //waterMap.columns[i].yPosColToMove = 0;
         }
 
         //Updating pos
@@ -237,6 +238,23 @@ public class WaterGrid : MonoBehaviour{
                 }
                 else if(indexesLeft.Contains(i))
                 {
+                    /*
+                    if(waterMap.columns[i].yPosColToMove < waterMap.wantedYStep)
+                    {
+                        Transform theLastChild = columns[i].transform.GetChild(columns[i].transform.childCount - 1);
+                        Debug.Log("ecume for " + i + " "+ waterMap.columns[i].yPosColToMove + " " + waterMap.wantedYStep);
+                        Vector3 pos;// = endingPositions[i];
+                        
+                        // pos.x = pos.x + planeBounds.size.x * xSize;
+                        GameObject fx = (GameObject)Instantiate(fxPrefab, new Vector3(0,0,0), Quaternion.identity);
+                        fx.transform.parent = theLastChild;
+                        pos = fx.transform.localPosition;
+                        pos.x = - planeBounds.size.x * (waterMap.wantedYStep - waterMap.columns[i].yPosColToMove + 1) - (planeBounds.size.x) / 2;
+                        pos.z = 0f;
+                        pos.y = 1f;
+                        fx.transform.localPosition = pos;
+                    }*/
+
                     indexesLeft.Remove(i);
                 }
             }
