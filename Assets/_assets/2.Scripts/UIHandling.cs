@@ -20,16 +20,22 @@ public class UIHandling : MonoBehaviour
 
     public void OnTourClick()
     {
+        SoundManager.Instance.PlaySound("Menu_Bouton");
+
         gameManager.SetTour();
     }
 
     public void OnWallClick()
     {
+        SoundManager.Instance.PlaySound("Menu_Bouton");
+
         gameManager.SetWall2();
     }
 
     public void OnWall2Click()
     {
+        SoundManager.Instance.PlaySound("Menu_Bouton");
+
         gameManager.SetWall();
     }
 
@@ -37,12 +43,16 @@ public class UIHandling : MonoBehaviour
 
     public void OnLeftClick()
     {
+        SoundManager.Instance.PlaySound("Menu_Bouton");
+
         cameraHandler.GoLeft();
     }
 
 
     public void OnRightClick()
     {
+        SoundManager.Instance.PlaySound("Menu_Bouton");
+
         cameraHandler.GoRight();
     }
 
@@ -59,12 +69,14 @@ public class UIHandling : MonoBehaviour
 
 
 
-
+    
 
     public void StartFight()
     {
+        SoundManager.Instance.StartFightMusic();
         gameManager.StartFight();
         ShowFightButton(false);
+        SoundManager.Instance.PlaySound("Bouton_Maree");
     }
 
     public void ShowFightButton(bool show)

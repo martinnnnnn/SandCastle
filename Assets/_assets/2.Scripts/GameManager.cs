@@ -107,12 +107,14 @@ public class GameManager : MonoBehaviour
             if (structure.GetStructureType() == StructureType.BASIC)
             {
                 structure.SetType(StructureType.ROCK);
+                SoundManager.Instance.PlaySound("Upgrade_Batiment");
             }
         }
         else if (useSeaweed)
         {
             if (structure.GetStructureType() == StructureType.BASIC)
             {
+                SoundManager.Instance.PlaySound("Upgrade_Batiment");
                 structure.SetType(StructureType.SEA);
             }
         }

@@ -66,6 +66,7 @@ public class InputHandling : MonoBehaviour
             Sand sand = info.collider.GetComponent<Sand>();
             if (sand)
             {
+                SoundManager.Instance.PlaySound("Ramassage_Sable");
                 gameManager.ChangeSandValue(1);
                 return;
             }
@@ -73,6 +74,7 @@ public class InputHandling : MonoBehaviour
             Rock rock = info.collider.GetComponent<Rock>();
             if (rock)
             {
+                SoundManager.Instance.PlaySound("Ramassage_Galet");
                 gameManager.ChangeRockValue(1);
                 Destroy(rock.gameObject);
                 return;
@@ -80,6 +82,7 @@ public class InputHandling : MonoBehaviour
             Seaweed sea = info.collider.GetComponent<Seaweed>();
             if (sea)
             {
+                SoundManager.Instance.PlaySound("Ramassage_Algue");
                 gameManager.ChangeSeaweedValue(1);
                 Destroy(sea.gameObject);
                 return;

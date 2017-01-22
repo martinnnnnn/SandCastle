@@ -95,6 +95,7 @@ public class SandStructure : MonoBehaviour
 
     void Awake()
     {
+        SoundManager.Instance.PlaySound("Pose_Batiment");
         type = StructureType.BASIC;
         life = maxLife;
         isMidLife = false;
@@ -130,6 +131,7 @@ public class SandStructure : MonoBehaviour
     {
         
         life += value;
+        SoundManager.Instance.PlaySound("Vague_Hit_Chateau");
         Debug.Log("take damage " + value + " life:" + life);
         /*
         if (life < 0)
@@ -151,6 +153,17 @@ public class SandStructure : MonoBehaviour
             updateModel();
         }
     }
+
+    /*
+    public bool checkWillDie(int damage)
+    {
+        if ((life + damage) <= lowLife && !isLowLife)
+        {
+            return true;
+        }
+        return false;
+    }
+    */
 
     private void SetFalse()
     {

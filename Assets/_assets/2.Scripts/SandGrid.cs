@@ -52,13 +52,14 @@ public class SandGrid : MonoBehaviour
             column.yCollisionGrid = -1;
             column.yPosColToMove = waterMap.wantedYStep;
             //Check if collision one by one (y0,y1,.. until reaching step end)
-            for (int i = 0; i < waterMap.wantedYStep; i++)
+            for (int i = 0; i <= waterMap.wantedYStep; i++)
             {
                 if (!checkWantedStep(i, column, waterMap.wantedYStep, waterMap.speed)) break;
             }
-
-           // Debug.Log("column: " + column.xIndexCol + " togo:" + column.yPosColToMove);
+        
+            Debug.Log("column: " + column.xIndexCol + " togo:" + column.yPosColToMove);
         }
+
     }
 
     IEnumerator takeDamage(SandTile tile, float waitSeconds, int damage)
@@ -69,6 +70,36 @@ public class SandGrid : MonoBehaviour
 
     public bool checkWantedStep(int index, WaterColumn column, int wantedYStep, float speed)
     {
+        bool res = true;
+        int back = 0;
+        for (int i = column.waterTiles.Count - 1; i >= (column.waterTiles.Count - 1 - index); i--)
+        {
+            Debug.Log("column:" + column.xIndexCol + " icheck:" + i);
+            if (column.waterTiles[i] != 0 && tiles[column.xIndexCol, index - back].HasStructure())
+            {
+                column.yCollisionGrid = index - back;
+                column.yPosColToMove = index - 1;
+
+
+                //if will be destroyed continue !! not done yet
+
+                //Take damage
+                float time = (tileSize.x * (column.yPosColToMove + 1)) / speed;
+                Debug.Log("time damage: " + time + " damage:" + -(wantedYStep - index - 1));
+                StartCoroutine(takeDamage(tiles[column.xIndexCol, index - back], time, -(wantedYStep - index - 1)));
+
+                res = false;
+                break;
+            }
+            else
+            {
+                back++;
+            }
+        }
+        return res;
+
+        /*
+
         //Get last tile water, beginning from bottom
         int j = column.waterTiles.Count - 1;
         int numberblanck = 0;
@@ -81,6 +112,10 @@ public class SandGrid : MonoBehaviour
                 return false;
             }
         }
+        numberblanck--;
+
+        numberblanck = Mathf.Clamp(numberblanck, 0, column.waterTiles.Count);
+           
 
         //if (column.waterTiles[j] > 0)
         //{
@@ -89,18 +124,18 @@ public class SandGrid : MonoBehaviour
         //Debug.Log("TILE 2 2 : " + (tiles[2, 2].HasStructure() ? "yes" : "no"));
 
 
-        if (tiles[column.xIndexCol, index].HasStructure())
+        if (tiles[column.xIndexCol, j].HasStructure())
         {
             column.yCollisionGrid = j;
-            column.yPosColToMove = index - 1 + numberblanck;//!!!!!
+            column.yPosColToMove = index;// + numberblanck;// - 1 ;//!!!!!
             //Debug.Log("yPosColToMove: " + column.yPosColToMove);
 
             //Take damage
 
-            float time = (tileSize.x * (column.yPosColToMove + 1)) / speed;
+            float time = (tileSize.x * (column.yPosColToMove)) / speed;
             Debug.Log("time damage: " + time);
 
-            StartCoroutine(takeDamage(tiles[column.xIndexCol, index], time, -(wantedYStep - index)));
+            StartCoroutine(takeDamage(tiles[column.xIndexCol, j], time, -(wantedYStep - index)));
 
             return false;
         }
@@ -108,6 +143,20 @@ public class SandGrid : MonoBehaviour
         {
             return true;
         }
+
+
+        */
+
+
+
+
+
+
+
+
+
+
+
         //}
         //return true;
 
