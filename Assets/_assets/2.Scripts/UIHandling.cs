@@ -63,8 +63,10 @@ public class UIHandling : MonoBehaviour
 
     public void StartFight()
     {
+        SoundManager.Instance.StartFightMusic();
         gameManager.StartFight();
         ShowFightButton(false);
+        SoundManager.Instance.PlaySound("Bouton_Maree");
     }
 
     public void ShowFightButton(bool show)
