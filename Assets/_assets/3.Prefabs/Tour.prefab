@@ -663,9 +663,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffcc699da8c11f642808f118ba53dd95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicHigh: {fileID: 1000010123941878, guid: a82ece61620754741a17bd565ceaa83f, type: 2}
-  basicMid: {fileID: 1000010889896542, guid: 7f7ffd0c28a8cb24199627f136ed0e82, type: 2}
-  basicLow: {fileID: 1000011956275990, guid: e7b37cff3920f564f91690301e8a2b4c, type: 2}
+  basicHigh: {fileID: 1000011388884946}
+  basicMid: {fileID: 1000013308740910}
+  basicLow: {fileID: 1000014134495226}
   rockHigh: {fileID: 1000012109208746}
   rockMid: {fileID: 1000010157614636}
   rockLow: {fileID: 1000012667659706}
@@ -673,7 +673,7 @@ MonoBehaviour:
   seaMid: {fileID: 1000010916720234}
   seaLow: {fileID: 1000012180083820}
   maxLife: 3
-  midLife: 2
+  midLife: 1
   lowLife: 1
   rockBonus: 1
   seaBonus: 1

@@ -7,37 +7,49 @@ public class TideHandler : MonoBehaviour
     public Transform highTide;
     public Transform lowTide;
 
-    //public Transform 
+    public Transform topLeftSpawn;
+    public Transform bottomRightSpawn;
 
     public GameObject SeaweedPrefab;
 
     public float speed;
-    public float frequency;
+    public float tideFrequency;
 
     private bool high;
 
     private float timeSinceLastMove;
 
+    private float spawnfrequency = 2;
+    private float timeSinceLastSpawn;
 
     void Awake()
     {
         high = false;
-        timeSinceLastMove = frequency;
+        timeSinceLastMove = tideFrequency;
+        timeSinceLastSpawn = 0;
     }
 
     void Update()
     {
 
         timeSinceLastMove += Time.deltaTime;
-        if (timeSinceLastMove > frequency)
+        timeSinceLastSpawn += Time.deltaTime;
+
+        if (timeSinceLastMove > tideFrequency)
         {
             timeSinceLastMove = 0;
             StartCoroutine(MoveTide());
         }
         // si la mer est haute
-        else if (high)
+        else if (high && timeSinceLastSpawn > spawnfrequency)
         {
-            //Instantiate(SeaweedPrefab,)
+            timeSinceLastSpawn = 0;
+            for (int i = 0; i < Random.Range(2,6); i++)
+            {
+                float x = Random.Range(topLeftSpawn.position.x, bottomRightSpawn.position.x);
+                float z = Random.Range(bottomRightSpawn.position.z, topLeftSpawn.position.z);
+                Instantiate(SeaweedPrefab, new Vector3(x, transform.position.y, z), new Quaternion());                                      
+            }
         }
 
     }

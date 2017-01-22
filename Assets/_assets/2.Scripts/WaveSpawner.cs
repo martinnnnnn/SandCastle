@@ -140,7 +140,4 @@ public class WaveSpawner : MonoBehaviour
             return waveFilesEasy[Random.Range(0, waveFilesEasy.Length)];
         }
     }
-
-
-
 }

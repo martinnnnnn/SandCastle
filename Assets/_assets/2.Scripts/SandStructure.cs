@@ -43,6 +43,7 @@ public class SandStructure : MonoBehaviour
 
     private void updateModel()
     {
+        Debug.Log("life:: " + life);
         SetFalse();
         if (isMidLife)
         {
@@ -61,6 +62,7 @@ public class SandStructure : MonoBehaviour
         }
         else if (isLowLife)
         {
+            Debug.Log("low");
             if (type == StructureType.BASIC)
             {
                 basicLow.SetActive(true);
@@ -76,6 +78,7 @@ public class SandStructure : MonoBehaviour
         }
         else
         {
+            Debug.Log("low");
             if (type == StructureType.BASIC)
             {
                 basicHigh.SetActive(true);

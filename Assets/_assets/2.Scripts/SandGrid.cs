@@ -57,7 +57,7 @@ public class SandGrid : MonoBehaviour
                 if (!checkWantedStep(i, column, waterMap.wantedYStep, waterMap.speed)) break;
             }
 
-            Debug.Log("column: " + column.xIndexCol + " togo:" + column.yPosColToMove);
+           // Debug.Log("column: " + column.xIndexCol + " togo:" + column.yPosColToMove);
         }
     }
 
