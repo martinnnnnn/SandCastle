@@ -6,7 +6,7 @@ public class Sceneloader : MonoBehaviour {
     
 	// Use this for initialization
 	public void Load () {
-        SceneManager.LoadScene("test-martin1");
+        SceneManager.LoadScene("Game");
     }
 	
 	// Update is called once per frame

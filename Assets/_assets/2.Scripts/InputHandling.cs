@@ -75,16 +75,20 @@ public class InputHandling : MonoBehaviour
             if (rock)
             {
                 SoundManager.Instance.PlaySound("Ramassage_Galet");
-                gameManager.ChangeRockValue(1);
-                Destroy(rock.gameObject);
+                if (gameManager.ChangeRockValue(1))
+                {
+                    Destroy(rock.gameObject);
+                }
                 return;
             }
             Seaweed sea = info.collider.GetComponent<Seaweed>();
             if (sea)
             {
                 SoundManager.Instance.PlaySound("Ramassage_Algue");
-                gameManager.ChangeSeaweedValue(1);
-                Destroy(sea.gameObject);
+                if (gameManager.ChangeSeaweedValue(1))
+                {
+                    Destroy(sea.gameObject);
+                }
                 return;
             }
         }

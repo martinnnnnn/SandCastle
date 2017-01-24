@@ -1678,8 +1678,8 @@ MonoBehaviour:
   maxLife: 2
   midLife: 1
   lowLife: 0
-  rockBonus: 0
-  seaBonus: 0
+  rockBonus: 1
+  seaBonus: 1
 --- !u!114 &114000010934969352
 MonoBehaviour:
   m_ObjectHideFlags: 1

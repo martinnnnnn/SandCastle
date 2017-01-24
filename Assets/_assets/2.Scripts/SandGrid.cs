@@ -10,7 +10,7 @@ public class SandGrid : MonoBehaviour
     public GameObject tilePrefab;
     private Vector3 tileSize;
     public Transform topLeftCornerPosition;
-
+    public GameObject nexus;
     private SandTile[,] tiles;
 
     void Awake()
@@ -25,6 +25,11 @@ public class SandGrid : MonoBehaviour
                 GameObject tileObj = (GameObject)Instantiate(tilePrefab, position, new Quaternion());
                 
                 tiles[i,j] = tileObj.GetComponent<SandTile>();
+
+                if (i == 3 && j == 3)
+                {
+                    tiles[i, j].SetStructure(nexus);
+                }
             }
         }
     }

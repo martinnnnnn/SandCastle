@@ -39,9 +39,12 @@ public class GameManager : MonoBehaviour
 
     private WaterGrid waterGrid;
 
+    private static int towerNumber;
+    private static int maxTower = 5;
+
     void Awake()
     {
-        
+        towerNumber = 0;
         //sandQuantityCurrent = sandQuantityMax;
         rocksQuantity = 0;
         seaweedQuantity = 0;
@@ -70,8 +73,9 @@ public class GameManager : MonoBehaviour
 
         if (!tile.HasStructure() && currentPrefab)
         {
-            if (currentPrefab == tourPrefab && sandQuantityCurrent >= tourSandValue)
+            if (currentPrefab == tourPrefab && sandQuantityCurrent >= tourSandValue && towerNumber < maxTower)
             {
+                towerNumber++;
                 ChangeSandValue(-tourSandValue);
                 //sandQuantityCurrent -= tourSandValue;
                 GameObject sandStructure = (GameObject)Instantiate(currentPrefab, new Vector3(tile.transform.position.x, -3f, tile.transform.position.z), new Quaternion());
@@ -105,18 +109,21 @@ public class GameManager : MonoBehaviour
 
     public void ClickOnStructure(SandStructure structure)
     {
-        if (useRock)
+        if (useRock && rocksQuantity > 0)
         {
             if (structure.GetStructureType() == StructureType.BASIC)
             {
+                rocksQuantity--;
+
                 structure.SetType(StructureType.ROCK);
                 SoundManager.Instance.PlaySound("Upgrade_Batiment");
             }
         }
-        else if (useSeaweed)
+        else if (useSeaweed && seaweedQuantity > 0)
         {
             if (structure.GetStructureType() == StructureType.BASIC)
             {
+                seaweedQuantity--;
                 SoundManager.Instance.PlaySound("Upgrade_Batiment");
                 structure.SetType(StructureType.SEA);
             }
@@ -132,24 +139,31 @@ public class GameManager : MonoBehaviour
         buttonsHandler.ChangeBucketAmount(amount);
     }
 
-    public void ChangeRockValue(int amount)
+    public bool ChangeRockValue(int amount)
     {
+        bool ans = true;
         rocksQuantity += amount;
         if (rocksQuantity > 3)
         {
             rocksQuantity = 3;
+            ans = false;
         }
         buttonsHandler.ChangeRockAmount(amount);
+        return ans;
     }
 
-    public void ChangeSeaweedValue(int amount)
+    public bool ChangeSeaweedValue(int amount)
     {
+        bool ans = true;
         seaweedQuantity += amount;
         if (seaweedQuantity > 3)
         {
             seaweedQuantity = 3;
+            ans = false;
         }
+
         buttonsHandler.ChangeSeaAmount(amount);
+        return ans;
     }
 
 
